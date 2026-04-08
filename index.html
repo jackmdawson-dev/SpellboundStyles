@@ -64,10 +64,36 @@
     
      	<div class="main">
 			<hr>
-			<iframe src="home.html" style="border:none;" width="100%" Height="100%" name="iframe_a" onload="window.parent.parent.scrollTo(0,0)"></iframe> 
-			
-<div id="shapo-widget-09f08788ca54afd163fe"></div>
-  <script id="shapo-embed-js" type="text/javascript" src="https://cdn.shapo.io/js/embed.js" defer width=10%></script>
+			<iframe 
+				id="pages"
+				src="home.html"
+				style="border:none;"
+				width="100%"
+				Height="100%"
+				onload="window.parent.parent.scrollTo(0,0)"
+			></iframe>
+			<script>
+			  const iframe = document.getElementById('pages');
+			 
+			  // Wait for iframe to load content
+			  iframe.addEventListener('load', () => {
+			    try {
+			      // Access iframe content (same-origin only)
+			      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+			      
+			      // Get content height (scrollHeight includes padding, not margins/borders)
+			      const contentHeight = iframeDoc.body.scrollHeight;
+			      
+			      // Set iframe height (add buffer for safety, e.g., 20px)
+			      iframe.style.height = `${contentHeight + 20}px`; 
+			    } catch (error) {
+			      console.error('Failed to resize iframe:', error);
+			    }
+			  });
+			</script>
+						
+			<div id="shapo-widget-09f08788ca54afd163fe"></div>
+  			<script id="shapo-embed-js" type="text/javascript" src="https://cdn.shapo.io/js/embed.js" defer width=10%></script>
      	</div>
         
     </body>
